@@ -4,16 +4,14 @@ This package contains agent implementations that use OpenAI's API
 with tool calling capabilities.
 """
 
-from agents.nutrition_agent import run_nutrition_assistant
-from agents.healthy_breakfast_planner_agent import run_breakfast_planner
-from agents.breakfast_price_checker_agent import run_breakfast_price_checker
-from agents.breakfast_advisor_agent import run_breakfast_advisor
+from agents.sre_analysis_agent import SREAnalysisAgent
+from agents.incident_intelligence_agent import IncidentIntelligenceAgent
+from agents.operational_signals_agent import OperationalSignalsAgent
 
 __all__ = [
-    "run_nutrition_assistant",
-    "run_breakfast_planner",
-    "run_breakfast_price_checker",
-    "run_breakfast_advisor",
+    "SREAnalysisAgent",
+    "IncidentIntelligenceAgent",
+    "OperationalSignalsAgent",
 ]
 
 # Made with Bob

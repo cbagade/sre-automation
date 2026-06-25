@@ -18,15 +18,11 @@ _TOOL_REGISTRY: dict[str, Callable[..., str]] = {}
 def register_tool_category(functions: dict[str, Callable[..., str]]) -> None:
     """Register a tool category's functions in the global registry.
     
-    This function is called by tool category modules (e.g., nutrition_tools.py)
-    to automatically register their functions when imported.
+    This function is called by tool category modules to automatically
+    register their functions when imported.
     
     Args:
         functions: Dictionary mapping function names to their implementations
-        
-    Example:
-        >>> # In nutrition_tools.py
-        >>> register_tool_category(NUTRITION_FUNCTIONS)
     """
     _TOOL_REGISTRY.update(functions)
 

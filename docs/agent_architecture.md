@@ -20,13 +20,6 @@ graph TD
         SRE_AGENT[sre_analysis_agent.py]
     end
 
-    subgraph BREAKFAST["Breakfast Domain Agents"]
-        BKF_ADV[Breakfast Advisor Agent\norchestrator]
-        BKF_PLN[Healthy Breakfast Planner Agent]
-        BKF_PRC[Breakfast Price Checker Agent]
-        NUT_AGT[Nutrition Agent]
-    end
-
     subgraph INTEL["Incident Intelligence Agent"]
         INC_AGENT[incident_intelligence_agent.py]
     end
@@ -42,10 +35,6 @@ graph TD
 
     OPS_PAGE --> OPS_AGENT
     INC_PAGE --> INC_AGENT
-
-    BKF_ADV --> BKF_PLN
-    BKF_ADV --> NUT_AGT
-    BKF_ADV --> BKF_PRC
 ```
 
 ---
@@ -109,7 +98,7 @@ flowchart TD
 
     subgraph INC_AGENT["IncidentIntelligenceAgent  (incident_intelligence_agent.py)"]
         LOAD[Load Display Data\nrca_data_display.json]
-        GET_INC[get_all_incidents\ntime_period · change_related_only]
+        GET_INC[get_all_incidents\ntime_period · change_related_only\ncbc = source of truth]
         AN_TRENDS[analyze_trends]
         AN_COMP[analyze_components]
         AN_CORR[analyze_change_correlation]
@@ -198,71 +187,7 @@ flowchart TD
 
 ---
 
-## 5 · Breakfast Advisor Agent  (multi-agent orchestrator)
-
-```mermaid
-flowchart TD
-    USER([User Query])
-
-    subgraph GUARDRAILS["Guardrails  (breakfast_advisor_agent.py)"]
-        MOD[Content Safety\nOpenAI Moderation API]
-        FOOD_VAL[Food-topic Validation\nkeyword + jailbreak check]
-        OUT_VAL[Output Validation\noff-topic check]
-    end
-
-    subgraph ADV["Breakfast Advisor Agent  (orchestrator)"]
-        ORCH[LLM Orchestration\nOpenAI gpt-4-turbo\ntool_choice loop]
-    end
-
-    subgraph SUB_AGENTS["Sub-Agents  (called as tools)"]
-        PLN[Healthy Breakfast Planner Agent\nhealthy_breakfast_planner_agent.py\nOpenAI gpt-4-turbo · no tools]
-        NUT[Nutrition Agent\nnutrition_agent.py]
-        PRC[Breakfast Price Checker Agent\nbreakfast_price_checker_agent.py]
-    end
-
-    subgraph NUT_TOOLS["Nutrition Tools"]
-        CAL_TOOL[get_food_calories\nnutrition_tools.py]
-        WEB_NUT[websearch_tool\nExa MCP]
-    end
-
-    subgraph PRC_TOOLS["Price Tools"]
-        WEB_PRC[websearch_tool\nExa MCP]
-    end
-
-    subgraph STORES["Data Stores"]
-        CHROMA_NUT[(ChromaDB\nnutrition_db)]
-        EXA([Exa MCP\nWeb Search])
-    end
-
-    TRACE[Langfuse Tracing\nconditional_observe]
-
-    USER --> MOD
-    MOD -->|safe| FOOD_VAL
-    FOOD_VAL -->|food-related| ORCH
-
-    ORCH -->|breakfast_planner_tool| PLN
-    PLN --> ORCH
-
-    ORCH -->|calorie_calculator_tool| NUT
-    NUT --> CAL_TOOL
-    NUT --> WEB_NUT
-    CAL_TOOL --> CHROMA_NUT
-    WEB_NUT --> EXA
-    NUT --> ORCH
-
-    ORCH -->|handoff| PRC
-    PRC --> WEB_PRC
-    WEB_PRC --> EXA
-    PRC --> ORCH
-
-    ORCH --> OUT_VAL
-    OUT_VAL --> TRACE
-    OUT_VAL --> RESULT([Meal Plan\nnames · ingredients\ncalories · prices])
-```
-
----
-
-## 6 · RAG Ingestion & Retrieval Pipeline
+## 5 · RAG Ingestion & Retrieval Pipeline
 
 ```mermaid
 flowchart TD
@@ -302,30 +227,23 @@ flowchart TD
 
 ---
 
-## 7 · Key External Integrations Summary
+## 6 · Key External Integrations Summary
 
 ```mermaid
 graph LR
     subgraph AGENTS["Agents & Tools"]
         A1[SRE Analysis Agent]
-        A2[Breakfast Advisor Agent]
-        A3[Nutrition Agent]
-        A4[Breakfast Price Checker]
-        A5[Incident Intelligence Agent]
-        A6[Operational Signals Agent]
+        A2[Incident Intelligence Agent]
+        A3[Operational Signals Agent]
         T1[rag_incident_tool]
         T2[broadcom_kb_search_tool]
-        T3[websearch_tool]
-        T4[nutrition_tools]
-        T5[git_data_fetcher]
+        T3[git_data_fetcher]
     end
 
     subgraph EXTERNAL["External Services"]
-        OAI_LLM([OpenAI LLM\ngpt-4o · gpt-4o-mini\ngpt-4-turbo])
+        OAI_LLM([OpenAI LLM\ngpt-4o · gpt-4o-mini])
         OAI_EMB([OpenAI Embeddings\ntext-embedding-3-small])
-        OAI_MOD([OpenAI Moderation API])
         CHROMA_RCA[(ChromaDB\nrca_knowledge_base)]
-        CHROMA_NUT[(ChromaDB\nnutrition_db)]
         EXA_MCP([Exa MCP\nWeb Search])
         GIT([GitHub / GitLab\nRaw API])
         LANGFUSE([Langfuse\nTracing])
@@ -333,20 +251,13 @@ graph LR
 
     A1 --> OAI_LLM
     A2 --> OAI_LLM
-    A2 --> OAI_MOD
-    A3 --> OAI_LLM
-    A4 --> OAI_LLM
-    A5 --> OAI_LLM
 
     T1 --> OAI_EMB
     T1 --> CHROMA_RCA
-    T4 --> CHROMA_NUT
     T2 --> EXA_MCP
-    T3 --> EXA_MCP
-    T5 --> GIT
-    A6 --> GIT
+    T3 --> GIT
+    A3 --> GIT
 
     A1 --> LANGFUSE
     A2 --> LANGFUSE
-    A3 --> LANGFUSE
 ```

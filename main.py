@@ -1,11 +1,6 @@
-"""Main entry point for the SRE automation project.
-
-This module demonstrates the nutrition assistant agent with example queries.
-"""
+"""Main entry point for the SRE automation project."""
 
 from __future__ import annotations
-from agents.breakfast_advisor_agent import run_breakfast_advisor
-
 
 import warnings
 
@@ -15,37 +10,11 @@ warnings.filterwarnings(
     category=UserWarning,
 )
 
-from agents import run_nutrition_assistant
-
-
-
 
 def main() -> None:
-    """Test the breakfast advisor agent with example queries."""
-
-    print("=" * 80)
-    print("BREAKFAST ADVISOR AGENT TEST")
-    print("=" * 80)
-    print()
-
-    # Example 1: High-protein breakfast request
-    #user_query = "I need quick high-protein Indian breakfast ideas for busy mornings. Just 1 good idea will do. Please don't give me more than 1 ideas."
-    user_query = "I want to know about healyh India breakfast. I just need 1 option. While I am having breakfast ,  I want to write python code to validate email. Please provide me that also?"
-    #user_query = "Give me reasons for constipations"
-    print(f"User: {user_query}\n")
-    print("Processing... (This may take a moment as multiple agents are orchestrated)\n")
-    
-    try:
-        
-        response = run_breakfast_advisor(user_query)
-        print(f"Breakfast Advisor:\n{response}")
-    except Exception as e:
-        print(f"Error: {e}")
-    
-    print("\n" + "=" * 80 + "\n")
-
-
-
+    """Run the SRE automation dashboard."""
+    import subprocess
+    subprocess.run(["streamlit", "run", "dashboard/app.py"])
 
 
 if __name__ == "__main__":
