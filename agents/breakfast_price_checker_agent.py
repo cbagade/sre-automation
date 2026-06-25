@@ -1,8 +1,8 @@
-"""Nutrition assistant agent using OpenAI's API with tool calling.
+"""Breakfast price checker agent using OpenAI's API with web search tool.
 
-This module provides a nutrition expert assistant that can answer questions
-about food and nutrition, with the ability to look up calorie information
-using available tools. Includes Langfuse tracing for observability with privacy controls.
+This module provides an assistant that takes breakfast items with ingredients
+and calories, then uses web search to find approximate prices for the ingredients.
+Includes Langfuse tracing for observability with privacy controls.
 """
 
 import os
@@ -11,29 +11,26 @@ from openai.types.responses import ResponseInputParam, Response
 from dotenv import load_dotenv
 
 import config
-from tools import ALL_TOOLS, execute_tool_call
+from tools.websearch_tools import WEBSEARCH_TOOLS, WEBSEARCH_FUNCTIONS
+from tools.tool_runner import execute_tool_call
 from utils.tracing import conditional_observe
 
 # Agent instructions
-NUTRITION_ASSISTANT_INSTRUCTIONS = """
-You are a professional nutrition expert and dietitian assistant.
+PRICE_CHECKER_INSTRUCTIONS = """
+You are a helpful assistant that takes multiple breakfast items (with ingredients and calories) and checks for the price of the ingredients.
 
 Your responsibilities:
-- Give concise, accurate answers about nutrition and food.
-- Use the get_food_calories tool first for direct calorie lookup questions about foods.
-- Use the websearch_tool when:
-  - get_food_calories returns no nutrition information found
-  - get_food_calories returns a weak nutrition match
-  - get_food_calories returns an ambiguous nutrition match
-  - the user asks broader nutrition, diet, health-food, or food fact questions that require web context
+- Use the websearch_tool to get an approximate price for the ingredients.
+- In your final output provide the meal name, ingredients with calories and price for each meal.
+- Use markdown and be as concise as possible.
 
 Guidelines:
-- Prefer local nutrition lookup before web search for direct calorie questions.
-- If local results are weak or ambiguous, use websearch_tool to improve confidence.
-- For general nutrition questions, you may use websearch_tool directly when local calorie lookup is not sufficient.
-- When using web results, summarize clearly and avoid overstating certainty.
-- Remind users to consult healthcare professionals for medical conditions.
-- Use clear, easy-to-understand language.
+- Search for current market prices of ingredients.
+- Provide realistic price estimates based on web search results.
+- Format output clearly using markdown tables or lists.
+- Include both individual ingredient prices and total meal cost when possible.
+- Be practical about portion sizes and quantities.
+- If exact prices aren't available, provide reasonable estimates based on similar items.
 """
 
 # Maximum number of tool execution iterations to prevent infinite loops
@@ -87,9 +84,9 @@ def _create_response(input_items: ResponseInputParam) -> Response:
     
     response = client.responses.create(
         model=config.OPENAI_DEFAULT_MODEL,
-        instructions=NUTRITION_ASSISTANT_INSTRUCTIONS,
+        instructions=PRICE_CHECKER_INSTRUCTIONS,
         input=input_items,
-        tools=ALL_TOOLS,
+        tools=WEBSEARCH_TOOLS,
         temperature=0.7,
     )
     
@@ -97,37 +94,49 @@ def _create_response(input_items: ResponseInputParam) -> Response:
 
 
 @conditional_observe(
-    name="nutrition_assistant",
+    name="breakfast_price_checker",
     capture_input=True,   # Capture user messages for full visibility
     capture_output=True   # Capture assistant responses for full visibility
 )
-def run_nutrition_assistant(user_message: str) -> str:
-    """Run the nutrition assistant with tool support.
+def run_breakfast_price_checker(user_message: str) -> str:
+    """Run the breakfast price checker assistant with web search tool support.
     
     This function handles the complete conversation loop, including:
-    - Sending the user message to the model
-    - Executing any tool calls requested by the model
+    - Sending the user message with breakfast items to the model
+    - Executing web search tool calls to find ingredient prices
     - Returning tool results back to the model
-    - Iterating until a final text response is generated
+    - Iterating until a final formatted response is generated
     
     Full tracing enabled: Captures all inputs and outputs for complete observability.
     
     Args:
-        user_message: The user's question or request
+        user_message: The user's breakfast items with ingredients and calories
         
     Returns:
-        The assistant's response as a string
+        The assistant's response with meal names, ingredients, calories, and prices
+        formatted in markdown
         
     Raises:
         RuntimeError: If maximum iterations are exceeded, indicating
             the model may be stuck in a tool-calling loop
     
     Examples:
-        >>> response = run_nutrition_assistant("How many calories are in an apple?")
+        >>> breakfast_items = '''
+        ... 1. Greek Yogurt Parfait - Greek yogurt (200g), granola (50g), berries (100g) - 350 calories
+        ... 2. Avocado Toast - Whole wheat bread (2 slices), avocado (1/2), eggs (2) - 400 calories
+        ... '''
+        >>> response = run_breakfast_price_checker(breakfast_items)
         >>> print(response)
-        'An apple contains approximately 80 calories per medium apple (182g).'
+        '## Breakfast Price Breakdown
+        
+        ### 1. Greek Yogurt Parfait (350 calories)
+        - Greek yogurt (200g): $1.50
+        - Granola (50g): $0.75
+        - Berries (100g): $2.00
+        **Total: $4.25**
+        ...'
     """
-    print(f"\n[NUTRITION AGENT] Received query: {user_message}")
+    print(f"\n[BREAKFAST PRICE CHECKER AGENT] Received meal plan to price")
     input_items: ResponseInputParam = [
         {
             "role": "user",
@@ -161,6 +170,8 @@ def run_nutrition_assistant(user_message: str) -> str:
         # Execute all tool calls and collect results
         for tool_call in function_calls:
             tool_calls_made.append(tool_call.name)
+            
+            # Execute the tool call using the generic tool runner
             call_id, tool_result = execute_tool_call(tool_call)
             
             input_items.append({
@@ -179,5 +190,6 @@ def run_nutrition_assistant(user_message: str) -> str:
     )
     
     raise RuntimeError(error_msg)
+
 
 # Made with Bob

@@ -1,0 +1,10 @@
+{
+  "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39357",
+  "title": "Active Critical Alert: VM experiencing CPU contention - Virtual Machine",
+  "state": "closed",
+  "cause": "The issue can be caused due to ESXi host CPU overcommitted (high CPU contention/ready time), VM configured with more vCPUs than required (CPU scheduling delays), CPU-intensive applications running inside the VM, other VMs on the same host consuming excessive CPU, and CPU limits or reservations configured incorrectly.",
+  "resolution": "The issue can be resolved with migrating the VM to a less utilized ESXi host (vMotion), right-sizing the VM by reducing unnecessary vCPUs, optimizing or stopping high CPU-consuming processes in the guest OS, balancing workload across hosts or adding CPU capacity to the cluster, and reviewing and adjusting CPU reservations, limits, and shares.",
+  "parsed_at": "2026-06-25T04:11:40.221714",
+  "error": null,
+  "cached_at": "2026-06-25T04:11:46.812078"
+}

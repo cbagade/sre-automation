@@ -1,0 +1,545 @@
+[
+  {
+    "id": "rca-001",
+    "document": "vcda service experiencing outage down not working unavailable failed failure. vcd vcloud director platform failed unable authenticate authentication failing. ldap ldap directory lightweight directory access protocol connectivity failure connection issue unable connect reach. ssl ldaps ldaps secure encrypted connection enforcement enforced required.",
+    "metadata": {
+      "components": [
+        "authentication",
+        "ldap",
+        "ssl",
+        "vcda"
+      ],
+      "date_occurred": "2024-10-17",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-002",
+    "document": "vm virtual machine provisioning failing failed not working unable provision create deploy. vcenter vsphere unable coordinate communicate connect work with ibm cloud hyper protect crypto services hpcs hpcs key provider crypto service. broken trust relationship certificate trust issue validation failure loss of trust. hpcs hpcs presenting different public private server certificates certificate mismatch. certificate validation failures cert validation error trust broken.",
+    "metadata": {
+      "components": [
+        "certificate",
+        "hpcs",
+        "vcenter",
+        "vsphere",
+        "crypto"
+      ],
+      "date_occurred": "2025-01-28",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-003",
+    "document": "vcda availability experiencing replication failures failed failing not working. replication red state red status error failed state. vcenter vsphere upgrade upgraded post-upgrade after upgrade. replication tracking rt vms virtual machines marked invalid unknown state detected. ",
+    "metadata": {
+      "components": [
+        "replication vms",
+        "replication",
+        "rt vms",
+        "vcda",
+        "vcenter",
+        "vsphere"
+      ],
+      "date_occurred": "2026-04-14",
+      "cbc": "CHG15074362"
+    }
+  },
+  {
+    "id": "rca-004",
+    "document": "vcfaas linux vms virtual machines within cluster lost connectivity connection to their discs disks storage unavailable inaccessible during host maintenance activities. vsan virtual san unstable state entered when host placed maintenance mode without ensure accessibility option selected.",
+    "metadata": {
+      "components": [
+        "vms",
+        "vsan"
+      ],
+      "date_occurred": "2024-12-22",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-005",
+    "document": "veeam backups are impacted since veeam repository vms virtual machines became unavailable. vsan cluster running cascade lake cxl hosts experienced performance degradation intermittent i/o input output errors compared sapphire rapids spr cluster. new hosts added cascade lake vsan cluster automatic data rebalancing triggered leading vsan resynchronization resync activity. limited performance scalability cascade lake hardware cluster unable handle additional resync workload effectively resulting performance issues i/o errors.",
+    "metadata": {
+      "components": [
+        "backups",
+        "veeam",
+        "repository",
+        "veeam repository",
+        "veeam repo",
+        "repo",
+        "vsan"
+      ],
+      "date_occurred": "2025-01-22",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-006",
+    "document": "vm virtual machine backups impacted. backup operations disrupted due loss communication between veeam backup replication veeam backup replication vbr sql database. network-related issue impaired connection sql server impacting communication veeam backup replication vbr application database.",
+    "metadata": {
+      "components": [
+        "vbr",
+        "veeam",
+        "backups"
+      ],
+      "date_occurred": "2025-02-01",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-007",
+    "document": "nsx hosts degraded. several virtual machines vms entered inaccessible state due network connectivity issues within nsx environment. nsxransport hosts became degraded resulting gre tunnel failures. packets not exchanged between tunnel endpoints leading loss network connectivity affected virtual machines.",
+    "metadata": {
+      "components": [
+        "nsx",
+        "gre tunnels"
+      ],
+      "date_occurred": "2025-02-13",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-008",
+    "document": "vdc settings option not available tenants. edit option not visible tenant ui vcloud director vcd vcloud director.",
+    "metadata": {
+      "components": [
+        "vcd"
+      ],
+      "date_occurred": "2025-02-12",
+      "cbc": "CHG10366819"
+    }
+  },
+  {
+    "id": "rca-009",
+    "document": "veeam backup portal ui inaccessible. integration between vcloud director director veeam enterprise manager em environment not functioning, due to bug in director",
+    "metadata": {
+      "components": [
+        "backups",
+        "em",
+        "vcd",
+        "veeam em",
+        "veeam"
+      ],
+      "date_occurred": "2025-02-24",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-010",
+    "document": "windows activation failing newly provisioned vdcs. customers unable activate windows virtual machines resulting failed activation transactions newly provisioned vdcs.",
+    "metadata": {
+      "components": [
+        "windows",
+        "activation"
+      ],
+      "date_occurred": "2025-02-25",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-011",
+    "document": "vcda performance degradation causing vm virtual machine migration issues. customers experienced socket errors slow replication multiple virtual machines failing power on after vcda cutover. issue triggered configuration change related vcenter high availability vcha added dns entry management vcenter disrupted connectivity between vcenter vcda service.",
+    "metadata": {
+      "components": [
+        "vcda",
+        "migration",
+        "vcenter"
+      ],
+      "date_occurred": "2025-02-28",
+      "cbc": "CHG10477752"
+    }
+  },
+  {
+    "id": "rca-012",
+    "document": "network connectivity disruption during nsx edge maintenance. customers experienced loss network connectivity gre tunnel traffic interruption during planned maintenance activity nsx edges.",
+    "metadata": {
+      "components": [
+        "gre tunnel",
+        "edge",
+        "nsx"
+      ],
+      "date_occurred": "2025-02-21",
+      "cbc": "CHG10496133"
+    }
+  },
+  {
+    "id": "rca-013",
+    "document": "veeam repository connection failures impacting backup operations. customers experienced failures connecting veeam backup replication veeam backup replication vbr repository resulting backup restore job failures. veeam backup replication vbr server experienced sustained high cpu memory utilization caused postgresql database connectivity failures prevented access veeam console.",
+    "metadata": {
+      "components": [
+        "backups",
+        "repository",
+        "repo",
+        "resource",
+        "veeam"
+      ],
+      "date_occurred": "2025-04-23",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-014",
+    "document": "datastore capacity exhaustion causing backup vm virtual machine operation failures. veeam backup jobs failed customers experienced vm power-on failures pending vm states due datastore capacity exhaustion. customer-initiated workload migrations all vcda replications placed single nfs datastore exhausting capacity.",
+    "metadata": {
+      "components": [
+        "datastore",
+        "backups",
+        "vcda",
+        "veeam"
+      ],
+      "date_occurred": "2025-04-26",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-015",
+    "document": "nsx manager ui inaccessible affecting new workload provisioning. customers unable provision new vsis because nsx manager ui inaccessible resulting missing organization networks during new workload creation. known nsx software defect caused corfu compactor leader become unresponsive.",
+    "metadata": {
+      "components": [
+        "nsx",
+        "corfu"
+      ],
+      "date_occurred": "2025-04-26",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-016",
+    "document": "partially deleted edge caused metering billing interruption. metering billing processes stopped after edge associated virtual data center vdc left partially deleted state blocking interval job completion.",
+    "metadata": {
+      "components": [
+        "edge",
+        "nsx"
+      ],
+      "date_occurred": "2025-06-17",
+      "cbc": "CHG11582869"
+    }
+  },
+  {
+    "id": "rca-017",
+    "document": "vm virtual machine provisioning migration failures encrypted vsan storage policies. customers unable order migrate virtual machines using encrypted vsan storage policies. network configuration change unintentionally introduced duplicate subnet srx device causing incorrect routing intermittent connectivity loss between esxi hosts vcenter.",
+    "metadata": {
+      "components": [
+        "esxi",
+        "vcenter",
+        "vsan",
+        "srx"
+      ],
+      "date_occurred": "2025-06-23",
+      "cbc": "CHG11505532"
+    }
+  },
+  {
+    "id": "rca-018",
+    "document": "vcda replications entered invalid state after vcenter certificate rotation. customer vm virtual machine replications using vmware cloud director vcda failed showing invalid state.",
+    "metadata": {
+      "components": [
+        "certificate",
+        "ssl",
+        "vcda",
+        "vcenter"
+      ],
+      "date_occurred": "2025-07-02",
+      "cbc": "CHG11823186"
+    }
+  },
+  {
+    "id": "rca-019",
+    "document": "firewall logs unavailable vcloud director vcd vcloud director edge gateway. customers unable view export firewall logs under edge gateway section vcloud director vcd vcloud director.",
+    "metadata": {
+      "components": [
+        "vcd",
+        "edge",
+        "edges"
+      ],
+      "date_occurred": "2025-07-03",
+      "cbc": "CHG11855684"
+    }
+  },
+  {
+    "id": "rca-020",
+    "document": "veeam backup jobs failures due internal connectivity issue. veeam backup jobs may fail not complete successfully. nsx manager stuck reconfiguring state while updating static routes associated avi vip. prevented internal components such veeam backup replication vbr veeam backup replication servers reaching vcloud director vcd vcloud director vip due known nsx issue resulting veeam backup jobs failures.",
+    "metadata": {
+      "components": [
+        "avi",
+        "esxi",
+        "nsx",
+        "backups",
+        "veeam"
+      ],
+      "date_occurred": "2025-08-03",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-021",
+    "document": "vm virtual machine connectivity loss due nsx manager communication failure. virtual machines became unreachable due network connectivity loss. known jdk defect caused nsx managers reach thread limits preventing communication edge nodes.",
+    "metadata": {
+      "components": [
+        "nsx",
+        "nsx manager"
+      ],
+      "date_occurred": "2025-08-05",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-022",
+    "document": "veeam backup failure due veeam backup replication vbr database resource bottleneck. veeam backup jobs failing not progressing. veeam backup replication vbr veeam backup replication database had insufficient resources after veeam backup replication vbr scaling.",
+    "metadata": {
+      "components": [
+        "veeam",
+        "backups",
+        "resource",
+        "vsan"
+      ],
+      "date_occurred": "2025-08-09",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-023",
+    "document": "nsx edge provisioning failure due controller overload message storm. new edge nodes provisioning failing nodes stuck not ready state. existing edge nodes generated excessive synchronization traffic due known nsx issue overloaded destabilized nsx controllers. prevented timely processing new edge node messages resulting failed configuration registration.",
+    "metadata": {
+      "components": [
+        "nsx",
+        "edge"
+      ],
+      "date_occurred": "2025-08-05",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-024",
+    "document": "veeam veeam backup jobs stuck due uptycs interference veeam backup replication vbr. veeam backup jobs stuck not progressing. uptycs missing exclusion tags veeam backup replication vbr veeam backup replication causing real-time scanning veeam backup replication vbr processes.",
+    "metadata": {
+      "components": [
+        "avi",
+        "veeam",
+        "uptycs",
+        "backups"
+      ],
+      "date_occurred": "2025-08-30",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-025",
+    "document": "vdc provisioning failures edge gateway due vcd vcloud director api platform version incompatibility. vdc provisioning requests edge gateway selection failing getting stuck non-completed state causing delays failed transactions customers. version mismatch between vcloud director vcd vcloud director apis production vcloud director platform caused api communication failures.",
+    "metadata": {
+      "components": [
+        "vdc",
+        "vcd",
+        "edge"
+      ],
+      "date_occurred": "2025-09-10",
+      "cbc": "CHG12700605"
+    }
+  },
+  {
+    "id": "rca-026",
+    "document": "veeam backup jobs failures due service account lockout incorrect credential usage. multiple veeam backup jobs failing due authentication errors causing unsuccessful backup operations. veeam veeam backup replication vbr veeam backup replication service account locked because veeam one using same service account repeatedly attempted authentication incorrect password.",
+    "metadata": {
+      "components": [
+        "authentication",
+        "backups",
+        "veeam"
+      ],
+      "date_occurred": "2025-09-14",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-027",
+    "document": "nsx certificate auto-renewal causing authentication failure between vcd vcloud director nsx. users encountered errors accessing firewall rules due inability communicate nsx services. ",
+    "metadata": {
+      "components": [
+        "authentication",
+        "certificate",
+        "cert",
+        "nsx"
+      ],
+      "date_occurred": "2025-09-17",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-028",
+    "document": "vm virtual machine management failures during esxi upgrade due forced vcenter vcd vcloud director synchronization. customers experienced intermittent failures performing virtual machine management actions such power operations snapshots during upgrade.",
+    "metadata": {
+      "components": [
+        "vm",
+        "esxi",
+        "vcd",
+        "synchronization",
+        "vcenter"
+      ],
+      "date_occurred": "2025-09-24",
+      "cbc": "CHG12818483"
+    }
+  },
+  {
+    "id": "rca-029",
+    "document": "vdc provisioning failure due incorrect t1-t0 validation logic network code. vdc creation requests failing blocking provisioning activities across multiple regions.",
+    "metadata": {
+      "components": [
+        "vdc",
+        "network"
+      ],
+      "date_occurred": "2025-12-04",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-030",
+    "document": "connectivity issue between vcfaas powervs. customer connectivity vcfaas power vsi via transit gateway failed due bgp session outages caused unintended deletion transit gateway subnet triggered defect automated cleanup script.",
+    "metadata": {
+      "components": [
+        "nsx",
+        "powervs"
+      ],
+      "date_occurred": "2025-12-03",
+      "cbc": "CHG13880719"
+    }
+  },
+  {
+    "id": "rca-031",
+    "document": "edge deployments failing dallas affecting customer. edge deployment failed due expired nsx manager certificate preventing ovf signature validation.",
+    "metadata": {
+      "components": [
+        "certificate",
+        "nsx"
+      ],
+      "date_occurred": "2026-01-12",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-032",
+    "document": "vpn tunnel between fortigate vmware cloud director dr not establishing. vpn tunnel between fortigate vmware cloud director dr not establishing resulting no connectivity between endpoints.",
+    "metadata": {
+      "components": [
+        "nsx",
+        "vpn tunnel",
+        "tunnel"
+      ],
+      "date_occurred": "2026-01-17",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-033",
+    "document": "vlp customers facing intermittent connectivity issue.",
+    "metadata": {
+      "components": [
+        "vlp"
+      ],
+      "date_occurred": "2026-01-15 ",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-034",
+    "document": "customer tasks failing vcd vcloud director. customer operations vcloud director failing due authentication breakdown vcenter impacting normal platform functionality.",
+    "metadata": {
+      "components": [
+        "authentication",
+        "vcd",
+        "vcenter"
+      ],
+      "date_occurred": "2026-02-09",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-035",
+    "document": "vms virtual machines backup failed other errors. veeam backup jobsvirtual machines failed because snapshot operations esxi host not functioning.",
+    "metadata": {
+      "components": [
+        "esxi",
+        "veeam",
+        "backups"
+      ],
+      "date_occurred": "2026-02-15",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-036",
+    "document": "backup failed vms virtual machines bnpp w004. backup failures occurred vms due esxi host becoming unresponsive preventing proper snapshot backup operations.",
+    "metadata": {
+      "components": [
+        "esxi",
+        "backups"
+      ],
+      "date_occurred": "2026-03-02",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-037",
+    "document": "vcda test failover actions failing unexpected error. vcda test failover operations failing due incorrect datastore inaccessibility detection despite datastore being healthy operational.",
+    "metadata": {
+      "components": [
+        "vcda",
+        "failover"
+      ],
+      "date_occurred": "2026-03-02",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-038",
+    "document": "customer vm virtual machine inaccessible fra. vm fra became inaccessible due esxi host outage caused out-of-memory condition resulting i/o errors file locks preventing failover. vm became inaccessible because esxi host entered out-of-memory condition caused long-running packet capture leading i/o failures file",
+    "metadata": {
+      "components": [
+        "vm",
+        "esxi",
+        "memory",
+        "packet",
+        "nsx"
+      ],
+      "date_occurred": "2026-03-17",
+      "cbc": null
+    }
+  },
+  {
+    "id": "rca-039",
+    "document": "vm virtual machine connectivity loss due nsx manager communication failure. vms virtual machines impacted customers unable access connect reach workloads. nsx edge nodes experienced network connectivity issues.",
+    "metadata": {
+      "components": [
+        "nsx",
+        "network",
+        "edge"
+      ],
+      "date_occurred": "2025-08-05",
+      "cbc": "CHG11889971"
+    }
+  },
+  {
+    "id": "rca-040",
+    "document": "veeam backup server issues outage performance degradation. users unable start virtual machine vm backups. dal w082 veeam backup replication veeam backup replication vbr server experienced outage sustained performance degradation slow. postgresql database process failing failed start disrupted veeam backup replication vbr functionality.",
+    "metadata": {
+      "components": [
+        "veeam",
+        "backups",
+        "vsan"
+      ],
+      "date_occurred": "2025-10-10",
+      "cbc": "CHG13167711"
+    }
+  },
+  {
+    "id": "rca-041",
+    "document": "nsx cluster status showing unavailable unavailable not available down. nsx manager cluster experienced unavailability impacting management plane operations control plane. corfu-related symptoms issues problems intensified elevated vsan latency caused resynchronization resync activity.",
+    "metadata": {
+      "components": [
+        "nsx",
+        "latency",
+        "vsan"
+      ],
+      "date_occurred": "2025-10-21",
+      "cbc": "CHG12664975"
+    }
+  }
+]

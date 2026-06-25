@@ -26,7 +26,7 @@ from tools.tool_runner import register_tool_category
 from utils.tracing import conditional_observe
 
 EXA_MCP_BASE_URL = "https://mcp.exa.ai/mcp"
-DEFAULT_MCP_TIMEOUT_SECONDS = 90
+DEFAULT_MCP_TIMEOUT_SECONDS = 30  # Reduced from 90 to prevent long hangs
 DEFAULT_MAX_SEARCH_RESULTS = 5
 
 
@@ -217,37 +217,86 @@ async def _websearch_tool_async(query: str, max_results: int = DEFAULT_MAX_SEARC
     """
     server_url = _get_exa_mcp_url()
 
-    async with streamable_http_client(server_url) as (
-        read_stream,
-        write_stream,
-        _get_session_id,
-    ):
-        session = ClientSession(read_stream, write_stream)
-        async with session:
-            await session.initialize()
+    try:
+        # Use asyncio.timeout for Python 3.11+ or asyncio.wait_for for older versions
+        try:
+            async with asyncio.timeout(DEFAULT_MCP_TIMEOUT_SECONDS):
+                async with streamable_http_client(server_url) as (
+                    read_stream,
+                    write_stream,
+                    _get_session_id,
+                ):
+                    session = ClientSession(read_stream, write_stream)
+                    async with session:
+                        await session.initialize()
 
-            available_tools = await session.list_tools()
-            selected_tool = _select_search_tool(available_tools.tools)
-            tool_name = getattr(selected_tool, "name", "")
+                        available_tools = await session.list_tools()
+                        selected_tool = _select_search_tool(available_tools.tools)
+                        tool_name = getattr(selected_tool, "name", "")
 
-            tool_arguments = _build_search_arguments(
-                tool=selected_tool,
-                query=query,
-                max_results=max_results,
+                        tool_arguments = _build_search_arguments(
+                            tool=selected_tool,
+                            query=query,
+                            max_results=max_results,
+                        )
+
+                        result = await session.call_tool(tool_name, tool_arguments)
+
+                if result.isError:
+                    return (
+                        f"Exa web search returned an error for query '{query}'.\n"
+                        f"{_extract_text_content(result)}"
+                    )
+
+                return (
+                    f"Web search results for '{query}':\n"
+                    f"{_extract_text_content(result)}"
+                )
+        except AttributeError:
+            # Fallback for Python < 3.11
+            async def _do_search():
+                async with streamable_http_client(server_url) as (
+                    read_stream,
+                    write_stream,
+                    _get_session_id,
+                ):
+                    session = ClientSession(read_stream, write_stream)
+                    async with session:
+                        await session.initialize()
+
+                        available_tools = await session.list_tools()
+                        selected_tool = _select_search_tool(available_tools.tools)
+                        tool_name = getattr(selected_tool, "name", "")
+
+                        tool_arguments = _build_search_arguments(
+                            tool=selected_tool,
+                            query=query,
+                            max_results=max_results,
+                        )
+
+                        return await session.call_tool(tool_name, tool_arguments)
+            
+            result = await asyncio.wait_for(_do_search(), timeout=DEFAULT_MCP_TIMEOUT_SECONDS)
+            
+            if result.isError:
+                return (
+                    f"Exa web search returned an error for query '{query}'.\n"
+                    f"{_extract_text_content(result)}"
+                )
+
+            return (
+                f"Web search results for '{query}':\n"
+                f"{_extract_text_content(result)}"
             )
-
-            result = await session.call_tool(tool_name, tool_arguments)
-
-    if result.isError:
+    except asyncio.TimeoutError:
         return (
-            f"Exa web search returned an error for query '{query}'.\n"
-            f"{_extract_text_content(result)}"
+            f"Web search timed out after {DEFAULT_MCP_TIMEOUT_SECONDS} seconds for query '{query}'. "
+            "The Exa MCP server may be unavailable or slow to respond."
         )
-
-    return (
-        f"Web search results for '{query}':\n"
-        f"{_extract_text_content(result)}"
-    )
+    except Exception as e:
+        return (
+            f"Web search failed for query '{query}': {type(e).__name__}: {str(e)}"
+        )
 
 
 @conditional_observe(
@@ -266,7 +315,7 @@ def websearch_tool(query: str, max_results: int = DEFAULT_MAX_SEARCH_RESULTS) ->
     Returns:
         Search results formatted as text.
     """
-    print(f"Searching the web for '{query}'...")
+    print(f"\n[TOOL: websearch_tool] Searching the web for '{query}'...")
     return _run_async(_websearch_tool_async(query=query, max_results=max_results))
 
 

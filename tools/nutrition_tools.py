@@ -115,7 +115,10 @@ def calorie_lookup(food_item: str, max_results: int = 3) -> str:
     Returns:
         A formatted string containing nutrition information and match quality.
     """
-    print(f"Looking up calorie information from local nutrition DB for: {food_item}")
+    print(
+        f"\n[TOOL: get_food_calories] Looking up calories for '{food_item}'...",
+        flush=True,
+    )
     results = nutrition_db.query(query_texts=[food_item], n_results=max_results)
 
     if not results:

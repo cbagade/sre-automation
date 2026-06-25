@@ -1,0 +1,82 @@
+{
+  "_comment": "Sample data structure for operational signals JSON files",
+  "_note": "This file shows the expected structure for JSON files in the git repository",
+  "_path_structure": "data/{region}/{date}/{timeslot}/{filename}.json",
+  "_example_path": "data/Tokyo/2026-06-16/00_hr-06_hr/active_critical_immediate_alerts.json",
+  
+  "active_critical_immediate_alerts.json": {
+    "issues": [
+      {
+        "id": "alert-001",
+        "title": "High CPU usage on production cluster",
+        "severity": "critical",
+        "component": "compute",
+        "cluster_id": "prod-cluster-01",
+        "description": "CPU usage exceeded 90% threshold",
+        "timestamp": "2026-06-16T03:45:00Z",
+        "affected_nodes": ["node-01", "node-02"],
+        "metrics": {
+          "cpu_usage": 95.5,
+          "threshold": 90
+        }
+      }
+    ]
+  },
+  
+  "clusters_needing_attention.json": {
+    "issues": [
+      {
+        "id": "cluster-001",
+        "title": "Cluster health degraded",
+        "cluster_name": "prod-cluster-02",
+        "cluster_id": "cluster-02",
+        "status": "degraded",
+        "reason": "Multiple node failures detected",
+        "affected_services": ["api-gateway", "database"],
+        "timestamp": "2026-06-16T04:15:00Z"
+      }
+    ]
+  },
+  
+  "bgp_down.json": {
+    "issues": [
+      {
+        "id": "bgp-001",
+        "title": "BGP neighbor down on router",
+        "router_id": "router-1025c251-5ad8-424d-9bdb-b0a30a228b80",
+        "neighbor_ip": "192.168.1.1",
+        "peer_as": "65001",
+        "state": "down",
+        "timestamp": "2026-06-16T02:30:00Z",
+        "duration_minutes": 45
+      }
+    ]
+  },
+  
+  "gre_tunnel_down.json": {
+    "issues": [
+      {
+        "id": "gre-001",
+        "title": "GRE tunnel failure",
+        "tunnel_id": "tunnel-98c330",
+        "edge_node": "tok04-edge-stretch-t0-c01-n03",
+        "tunnel_uuid": "98c330...",
+        "state": "down",
+        "timestamp": "2026-06-16T01:20:00Z"
+      }
+    ]
+  },
+  
+  "manager_cluster_latency_high.json": {
+    "issues": [
+      {
+        "id": "latency-001",
+        "title": "High network latency between manager nodes",
+        "manager_nodes": ["manager-01", "manager-02"],
+        "average_latency_ms": 250,
+        "threshold_ms": 100,
+        "timestamp": "2026-06-16T05:00:00Z"
+      }
+    ]
+  }
+}

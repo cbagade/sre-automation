@@ -1,0 +1,38 @@
+# ============================================
+# OPERATIONAL SIGNALS GIT CONFIGURATION
+# ============================================
+# Add these lines to your .env file
+
+# Git Repository Base URL
+# For GitHub: https://raw.githubusercontent.com
+# For GitLab: https://gitlab.com/<owner>/<repo>/-/raw
+# For GitHub Enterprise: https://raw.github.your-company.com
+OPS_SIGNALS_GIT_BASE_URL=https://raw.githubusercontent.com
+
+# Repository Owner/Organization
+# Example: If your repo is github.com/mycompany/ops-signals, then owner is "mycompany"
+OPS_SIGNALS_GIT_OWNER=your-org
+
+# Repository Name
+# Example: If your repo is github.com/mycompany/ops-signals, then repo is "ops-signals"
+OPS_SIGNALS_GIT_REPO=operational-signals
+
+# Branch Name (usually "main" or "master")
+OPS_SIGNALS_GIT_BRANCH=main
+
+# ============================================
+# AUTHENTICATION (For Private Repositories)
+# ============================================
+# Leave these commented out if your repository is public
+
+# Git Access Token
+# GitHub: Create at Settings > Developer settings > Personal access tokens > Generate new token (classic)
+#         Required scope: "repo" (Full control of private repositories)
+# GitLab: Create at User Settings > Access Tokens
+#         Required scope: "read_repository"
+# Bitbucket: Create at Personal settings > App passwords
+#            Required permission: "repository read"
+OPS_SIGNALS_GIT_TOKEN=your_git_token_here
+
+# Enable Authentication (set to "true" if using a private repository)
+OPS_SIGNALS_GIT_USE_AUTH=false

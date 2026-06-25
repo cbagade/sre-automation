@@ -1,0 +1,118 @@
+{
+  "hierarchical::nsxtadapter_instance::bgp_neighbor_down.": {
+    "signal_info": {
+      "component": "Hierarchical",
+      "category": "NSXTAdapter Instance",
+      "alert_name": "BGP neighbor down."
+    },
+    "linked_issues": [
+      {
+        "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39339",
+        "linked_at": "2026-06-24T09:38:10.192660"
+      }
+    ],
+    "created_at": "2026-06-24T09:35:56.995419",
+    "updated_at": "2026-06-24T09:38:10.192670"
+  },
+  "clusters::ha_cpu_failover_is_below_12%": {
+    "signal_info": {
+      "component": "Clusters",
+      "alert_name": "HA CPU Failover is below 12%"
+    },
+    "linked_issues": [
+      {
+        "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39340",
+        "linked_at": "2026-06-24T10:24:45.816465"
+      }
+    ],
+    "created_at": "2026-06-24T10:24:45.816459",
+    "updated_at": "2026-06-24T10:24:45.816467"
+  },
+  "clusters::ha_memory_failover_is_below_12%": {
+    "signal_info": {
+      "component": "Clusters",
+      "alert_name": "HA Memory Failover is below 12%"
+    },
+    "linked_issues": [
+      {
+        "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39341",
+        "linked_at": "2026-06-24T10:25:45.535720"
+      }
+    ],
+    "created_at": "2026-06-24T10:25:45.535711",
+    "updated_at": "2026-06-24T10:25:45.535721"
+  },
+  "provider_vdcs::capacity_remaining_is_below_15%": {
+    "signal_info": {
+      "component": "Provider VDCs",
+      "alert_name": "Capacity Remaining is below 15%"
+    },
+    "linked_issues": [
+      {
+        "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39342",
+        "linked_at": "2026-06-24T10:59:36.790301"
+      }
+    ],
+    "created_at": "2026-06-24T10:59:36.790291",
+    "updated_at": "2026-06-24T10:59:36.790304"
+  },
+  "provider_vdcs::memory_utilization_is_above_85%": {
+    "signal_info": {
+      "component": "Provider VDCs",
+      "alert_name": "Memory Utilization is above 85%"
+    },
+    "linked_issues": [
+      {
+        "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39343",
+        "linked_at": "2026-06-24T11:00:24.397629"
+      }
+    ],
+    "created_at": "2026-06-24T11:00:24.397620",
+    "updated_at": "2026-06-24T11:00:24.397631"
+  },
+  "hierarchical::virtual_machine::vm_experiencing_disk_write_latency": {
+    "signal_info": {
+      "component": "Hierarchical",
+      "category": "Virtual Machine",
+      "alert_name": "VM experiencing disk write latency"
+    },
+    "linked_issues": [
+      {
+        "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39348",
+        "linked_at": "2026-06-24T13:01:44.116848"
+      }
+    ],
+    "created_at": "2026-06-24T13:01:44.116831",
+    "updated_at": "2026-06-24T13:01:44.116850"
+  },
+  "hierarchical::virtual_machine::vm_experiencing_cpu_contention": {
+    "signal_info": {
+      "component": "Hierarchical",
+      "category": "Virtual Machine",
+      "alert_name": "VM experiencing CPU contention"
+    },
+    "linked_issues": [
+      {
+        "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39357",
+        "linked_at": "2026-06-25T04:11:40.218688"
+      }
+    ],
+    "created_at": "2026-06-25T04:11:40.218677",
+    "updated_at": "2026-06-25T04:11:40.218691"
+  },
+  "hierarchical::virtual_machine::guest_os_experiencing_cpu_queue": {
+    "signal_info": {
+      "component": "Hierarchical",
+      "category": "Virtual Machine",
+      "alert_name": "Guest OS experiencing CPU queue"
+    },
+    "linked_issues": [
+      {
+        "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39358",
+        "linked_at": "2026-06-25T04:15:34.292079"
+      }
+    ],
+    "created_at": "2026-06-25T04:15:34.292068",
+    "updated_at": "2026-06-25T04:15:34.292083"
+  }
+}

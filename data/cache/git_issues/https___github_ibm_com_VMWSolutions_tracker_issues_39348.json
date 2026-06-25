@@ -1,0 +1,10 @@
+{
+  "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39348",
+  "title": "Active Critical Alert: VM experiencing disk write latency - Virtual Machine",
+  "state": "closed",
+  "cause": "The main cause for such issues are old VMware snapshots or pending snapshot consolidation, datastore/storage array being overloaded or having high latency, VM generating heavy writes like DB/log/backup activity, datastore being nearly full, and slow storage tier or incorrect disk controller.",
+  "resolution": "The resolution can be to delete/consolidate snapshots, move VM/VMDK to less busy or faster datastore, check and reschedule backup jobs, free up or expand datastore space, and use faster storage/PVSCSI controller for high I/O VM.",
+  "parsed_at": "2026-06-24T16:48:19.749819",
+  "error": null,
+  "cached_at": "2026-06-24T16:48:27.171238"
+}

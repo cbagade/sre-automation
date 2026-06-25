@@ -1,11 +1,10 @@
-"""Main entry point for the SRE automation project.
+"""Test script for the breakfast advisor agent.
 
-This module demonstrates the nutrition assistant agent with example queries.
+This script demonstrates the breakfast advisor agent orchestrating multiple agents
+to provide comprehensive breakfast recommendations with calories and prices.
 """
 
 from __future__ import annotations
-from agents.breakfast_advisor_agent import run_breakfast_advisor
-
 
 import warnings
 
@@ -15,9 +14,7 @@ warnings.filterwarnings(
     category=UserWarning,
 )
 
-from agents import run_nutrition_assistant
-
-
+from agents import run_breakfast_advisor
 
 
 def main() -> None:
@@ -29,23 +26,17 @@ def main() -> None:
     print()
 
     # Example 1: High-protein breakfast request
-    #user_query = "I need quick high-protein Indian breakfast ideas for busy mornings. Just 1 good idea will do. Please don't give me more than 1 ideas."
-    user_query = "I want to know about healyh India breakfast. I just need 1 option. While I am having breakfast ,  I want to write python code to validate email. Please provide me that also?"
-    #user_query = "Give me reasons for constipations"
+    user_query = "I need quick high-protein Indian breakfast ideas for busy mornings. Just 1 good idea will do. Please don't give me more than 1 ideas."
     print(f"User: {user_query}\n")
     print("Processing... (This may take a moment as multiple agents are orchestrated)\n")
     
     try:
-        
         response = run_breakfast_advisor(user_query)
         print(f"Breakfast Advisor:\n{response}")
     except Exception as e:
         print(f"Error: {e}")
     
     print("\n" + "=" * 80 + "\n")
-
-
-
 
 
 if __name__ == "__main__":

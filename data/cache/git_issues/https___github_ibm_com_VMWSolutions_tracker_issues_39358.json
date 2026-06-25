@@ -1,0 +1,10 @@
+{
+  "url": "https://github.ibm.com/VMWSolutions/tracker/issues/39358",
+  "title": "Active Critical Alert: Guest OS experiencing CPU queue - Virtual Machine",
+  "state": "closed",
+  "cause": "Following reasons can result in this issue - CPU demand inside guest OS is higher than available vCPU capacity, too many processes/threads waiting for CPU, application, batch job, antivirus, or backup agent consuming high CPU, VM has insufficient vCPUs for workload, VMware CPU contention causing high CPU Ready time.",
+  "resolution": "This issue can be addressed with - identify and stop/tune high CPU processes inside OS, increase vCPU only if CPU is consistently saturated, right-size application thread/process count, move VM to less busy ESXi host if CPU Ready is high, review scheduled jobs, backup agents, antivirus scans.",
+  "parsed_at": "2026-06-25T04:15:34.295107",
+  "error": null,
+  "cached_at": "2026-06-25T04:15:39.516030"
+}
